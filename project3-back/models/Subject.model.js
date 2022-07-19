@@ -5,7 +5,7 @@ const subjectSchema = new Schema({
   title: String,
   description: String,
   tags: String,
-  resources: [{ type: Schema.Types.ObjectId, ref: "Resource" }],
+  resources: String,
 });
 
 module.exports = model("Subject", subjectSchema);
