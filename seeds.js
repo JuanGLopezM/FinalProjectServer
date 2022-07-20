@@ -1,9 +1,9 @@
 const subjects = [
-    { title: "React", description: "Replaces Handlebars", tags:"1", resources: "13" },
-    { title: "Javascript", description: "Main logic", tags:"2", resources: "12" },
-    { title: "Node", description: "First bridge with backend", tags:"3", resources: "11"},
-    { title: "Express", description: "Second bridge with backend", tags:"3", resources: "11"},
-    { title: "MongoDB", description: "Database", tags:"3", resources: "11"},
+    // { title: "React", description: "Replaces Handlebars", tags:"1", resources: "13" },
+    // { title: "Javascript", description: "Main logic", tags:"2", resources: "12" },
+    // { title: "Node", description: "First bridge with backend", tags:"3", resources: "11"},
+    // { title: "Express", description: "Second bridge with backend", tags:"3", resources: "11"},
+    { title: "Patat55", description: "Test Resources", tags:"3", resources: ['a','b']},
 ];
 
 

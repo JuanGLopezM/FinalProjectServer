@@ -5,13 +5,13 @@ const mongoose = require('mongoose');
 const Subject = require('../models/Subject.model');
 
 //  POST /api/projects  -  Creates a new project
-// router.post('/projects', (req, res, next) => {
-// 	const { title, description } = req.body;
+router.post('/subjects', (req, res, next) => {
+	const { title, description, tags, resources } = req.body;
 
-// 	Project.create({ title, description, tasks: [] })
-// 		.then((response) => res.json(response))
-// 		.catch((err) => res.json(err));
-// });
+	Subject.create({ title, description, tags, resources })
+		.then((response) => res.json(response))
+		.catch((err) => res.json(err));
+});
 
 //  GET /api/projects -  Retrieves all of the projects
 router.get('/subjects', (req, res, next) => {
@@ -19,21 +19,21 @@ router.get('/subjects', (req, res, next) => {
 });
 
 //  GET /api/projects/:projectId -  Retrieves a specific project by id
-// router.get('/projects/:projectId', (req, res, next) => {
-// 	const { projectId } = req.params;
+router.get('/subjects/:subjectsId', (req, res, next) => {
+	const { subjectsId } = req.params;
 
-// 	if (!mongoose.Types.ObjectId.isValid(projectId)) {
-// 		res.status(400).json({ message: 'Specified id is not valid' });
-// 		return;
-// 	}
+	if (!mongoose.Types.ObjectId.isValid(subjectsId)) {
+		res.status(400).json({ message: 'Specified id is not valid' });
+		return;
+	}
 
-// Each Project document has `tasks` array holding `_id`s of Task documents
+// Each Subject document has `resources` array holding `_id`s of Task documents
 // We use .populate() method to get swap the `_id`s for the actual Task documents
-// 	Project.findById(projectId)
-// 		.populate('tasks')
-// 		.then((project) => res.status(200).json(project))
-// 		.catch((error) => res.json(error));
-// });
+	Subject.findById(subjectsId)
+		
+		.then((subject) => res.status(200).json(subject))
+		.catch((error) => res.json(error));
+});
 
 // PUT  /api/projects/:projectId  -  Updates a specific project by id
 // router.put('/projects/:projectId', (req, res, next) => {
