@@ -7,10 +7,11 @@ const Subject = require('../models/Subject.model');
 
 //  POST /api/resources  -  Creates a new resource
 router.post('/resource', (req, res, next) => {
-	const { title, description, subjectId } = req.body;
+	const { tags, sources, subjectId } = req.body;
 
-	Resource.create({ title, description, subject: subjectId })
+	Resource.create({ tags, sources, subject: subjectId })
 		.then((newResource) => {
+			console.log('NEWSOURCE:', newResource)
 			return Subject.findByIdAndUpdate(subjectId, {
 				$push: { resource: newResource._id }
 			});
