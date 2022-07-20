@@ -6,14 +6,15 @@ const Resource = require('../models/Resource.model');
 const Subject = require('../models/Subject.model');
 
 //  POST /api/resources  -  Creates a new resource
-router.post('/resource', (req, res, next) => {
-	const { tags, sources, subjectId } = req.body;
+router.post('/resources', (req, res, next) => {
+	const { tags,subject, source, id } = req.body;
+	console.log(req.body)
 
-	Resource.create({ tags, sources, subject: subjectId })
+	Resource.create({ tags, subject, source, id })
 		.then((newResource) => {
 			console.log('NEWSOURCE:', newResource)
-			return Subject.findByIdAndUpdate(subjectId, {
-				$push: { resource: newResource._id }
+			return Subject.findByIdAndUpdate(id, {
+				$push: { resources: newResource._id }
 			});
 		})
 		.then((response) => res.json(response))
