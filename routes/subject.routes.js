@@ -15,7 +15,7 @@ const Subject = require('../models/Subject.model');
 
 //  GET /api/projects -  Retrieves all of the projects
 router.get('/subjects', (req, res, next) => {
-	Subject.find().populate('resources').then((allSources) => res.json(allSources)).catch((err) => res.json(err));
+	Subject.find().then((allSources) => res.json(allSources)).catch((err) => res.json(err));
 });
 
 //  GET /api/projects/:projectId -  Retrieves a specific project by id

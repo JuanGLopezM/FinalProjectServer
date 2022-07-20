@@ -10,7 +10,7 @@ const subjects = [
 const mongoose = require('mongoose');
 const Subject = require('./models/Subject.model');
 
-const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/project-CodeIn";
+const MONGO_URI = process.env.MONGODB_URI || "mongodb+srv://admin:admin@cluster0.kpe2aqj.mongodb.net/project-CodeIn"
 
 mongoose
     .connect(MONGO_URI)
