@@ -10,14 +10,14 @@ router.post('/subjects', (req, res, next) => {
 
 	Subject.create({ title, description, tags, resources })
 		.then((response) => res.json(response))
-		
+
 		.catch((err) => res.json(err));
 });
 
 //  GET /api/projects -  Retrieves all of the projects
 router.get('/subjects', (req, res, next) => {
 	Subject.find().then((allSources) => res.json(allSources)).catch((err) => res.json(err));
-	
+
 });
 
 //  GET /api/projects/:projectId -  Retrieves a specific project by id
@@ -29,27 +29,36 @@ router.get('/subjects/:subjectsId', (req, res, next) => {
 		return;
 	}
 
-// Each Subject document has `resources` array holding `_id`s of Task documents
-// We use .populate() method to get swap the `_id`s for the actual Task documents
+	// Each Subject document has `resources` array holding `_id`s of resources documents
+	// We use .populate() method to get swap the `_id`s for the actual resources documents
 	Subject.findById(subjectsId)
 		.populate('resources')
 		.then((subject) => res.status(200).json(subject))
 		.catch((error) => res.json(error));
 });
 
-// PUT  /api/projects/:projectId  -  Updates a specific project by id
-// router.put('/projects/:projectId', (req, res, next) => {
-// 	const { projectId } = req.params;
+// PUT  /api/subjects/:subjectsId  -  Updates a specific project by id
+router.put('/subjects/:subjectsId', (req, res, next) => {
+	const { subjectsId } = req.params;
+	console.log("subjectsId:", subjectsId)
+	console.log("req.body:", req.body)
+	const updateKeys = {
+		title: inputTitle,
+		description: inputDescription,
+		tags: inputTags
+	}
+	const { inputTitle, inputDescription, inputTags } = req.body
+	if (!mongoose.Types.ObjectId.isValid(subjectsId)) {
+		res.status(400).json({ message: 'Specified id is not valid' });
+		return;
+	}
 
-// 	if (!mongoose.Types.ObjectId.isValid(projectId)) {
-// 		res.status(400).json({ message: 'Specified id is not valid' });
-// 		return;
-// 	}
-
-// 	Project.findByIdAndUpdate(projectId, req.body, { new: true })
-// 		.then((updatedProject) => res.json(updatedProject))
-// 		.catch((error) => res.json(error));
-// });
+	Subject.findByIdAndUpdate(subjectsId,
+		updateKeys,
+		{ new: true })
+		.then((updatedSubject) => res.json(updatedSubject))
+		.catch((error) => res.json(error));
+});
 
 // DELETE  /api/subject/:subjectId  -  Deletes a specific subject by id
 router.delete('/subjects/:subjectId', (req, res, next) => {
