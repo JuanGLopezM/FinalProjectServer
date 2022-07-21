@@ -3,7 +3,7 @@ const subjects = [
     // { title: "Javascript", description: "Main logic", tags:"2", resources: "12" },
     // { title: "Node", description: "First bridge with backend", tags:"3", resources: "11"},
     // { title: "Express", description: "Second bridge with backend", tags:"3", resources: "11"},
-    { title: "Patat55", description: "Test Resources", tags:"3", resources: ['a','b']},
+    { title: "Patat55", description: "Test Resources", tags:"3", resources: []},
 ];
 
 

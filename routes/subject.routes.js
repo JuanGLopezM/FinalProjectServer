@@ -10,12 +10,14 @@ router.post('/subjects', (req, res, next) => {
 
 	Subject.create({ title, description, tags, resources })
 		.then((response) => res.json(response))
+		
 		.catch((err) => res.json(err));
 });
 
 //  GET /api/projects -  Retrieves all of the projects
 router.get('/subjects', (req, res, next) => {
 	Subject.find().then((allSources) => res.json(allSources)).catch((err) => res.json(err));
+	
 });
 
 //  GET /api/projects/:projectId -  Retrieves a specific project by id
@@ -30,7 +32,7 @@ router.get('/subjects/:subjectsId', (req, res, next) => {
 // Each Subject document has `resources` array holding `_id`s of Task documents
 // We use .populate() method to get swap the `_id`s for the actual Task documents
 	Subject.findById(subjectsId)
-		
+		.populate('resources')
 		.then((subject) => res.status(200).json(subject))
 		.catch((error) => res.json(error));
 });

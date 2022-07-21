@@ -3,7 +3,7 @@ const { Schema, model } = mongoose;
 
 const resourceSchema = new Schema({
   tags: String,
-  subject: [{ type: Schema.Types.ObjectId, ref: 'Subject' }],
+  // subject: [{ type: Schema.Types.ObjectId, ref: 'Subject' }],
   source: String,
 });
     
