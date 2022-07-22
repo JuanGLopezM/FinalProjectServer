@@ -13,14 +13,17 @@ require("./config")(app);
 const allRoutes = require("./routes");
 app.use("/api", allRoutes);
 
+const sectionRoutes = require("./routes/section.routes")
+app.use("/api/sections", isAuthenticated, sectionRoutes)
+
 const authRouter = require("./routes/auth.routes");
 app.use("/api/auth", authRouter);
 
 const subjectRouter = require("./routes/subject.routes");
-app.use("/api", isAuthenticated, subjectRouter);            // <== UPDATE
+app.use("/api/subjects", isAuthenticated, subjectRouter);
 
 const resourceRouter = require("./routes/resource.routes");
-app.use("/api",isAuthenticated, resourceRouter);            // <== UPDATE
+app.use("/api", isAuthenticated, resourceRouter);            // <== UPDATE
 
 
 // app.use((req, res, next) => {
