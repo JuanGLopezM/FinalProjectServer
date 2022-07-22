@@ -22,7 +22,7 @@ router.post('/', (req, res, next) => {
 });
 
 //  GET /api/sections/:sectionId -  Retrieves a specific section by id
-router.get('/:sectionId', (req, res, next) => {
+router.get('/:sectionsId', (req, res, next) => {
     const { sectionsId } = req.params;
 
     if (!mongoose.Types.ObjectId.isValid(sectionsId)) {
@@ -32,7 +32,7 @@ router.get('/:sectionId', (req, res, next) => {
 
     // Each section document has `resources` array holding `_id`s of resources documents
     // We use .populate() method to get swap the `_id`s for the actual resources documents
-    Section.findById(subjectsId)
+    Section.findById(sectionsId)
         .populate('resources')
         .then((section) => res.status(200).json(section))
         .catch((error) => res.json(error));
