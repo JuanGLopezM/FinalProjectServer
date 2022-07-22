@@ -42,12 +42,13 @@ router.put('/subjects/:subjectsId', (req, res, next) => {
 	const { subjectsId } = req.params;
 	console.log("subjectsId:", subjectsId)
 	console.log("req.body:", req.body)
+	const { inputTitle, inputDescription, inputTags } = req.body
 	const updateKeys = {
 		title: inputTitle,
 		description: inputDescription,
 		tags: inputTags
 	}
-	const { inputTitle, inputDescription, inputTags } = req.body
+	
 	if (!mongoose.Types.ObjectId.isValid(subjectsId)) {
 		res.status(400).json({ message: 'Specified id is not valid' });
 		return;
