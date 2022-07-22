@@ -4,17 +4,18 @@ const mongoose = require('mongoose');
 
 const Resource = require('../models/Resource.model');
 const Subject = require('../models/Subject.model');
+const Section = require('../models/Section.model');
 
 //  POST /api/resources  -  Creates a new resource
 router.post('/resources', (req, res, next) => {
-	const { tags,subject, source, id } = req.body;
+	const { tags,subject, source, id, sectionId } = req.body;
 	console.log(req.body)
 
-	Resource.create({ tags, subject, source, id })
+	Resource.create({ tags, subject, source, id, sectionId })
 		.then((newResource) => {
 			console.log('NEWSOURCE:', newResource)
-			return Subject.findByIdAndUpdate(id, {
-				$push: { resources: newResource._id }
+			return Section.findByIdAndUpdate(sectionId, {
+				$push: { resources: newResource._id}
 			});
 		})
 		.then((response) => res.json(response))
