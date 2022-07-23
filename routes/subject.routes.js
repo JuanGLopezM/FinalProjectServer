@@ -34,7 +34,6 @@ router.get('/:subjectsId', (req, res, next) => {
 	Subject.findById(subjectsId)
 		.populate('sections')
 		.then((subject) => {
-			console.log(subject)
 			res.status(200).json(subject)
 		})
 		.catch((error) => res.json(error));
@@ -43,8 +42,6 @@ router.get('/:subjectsId', (req, res, next) => {
 // PUT  /api/subjects/:subjectsId  -  Updates a specific project by id
 router.put('/:subjectsId', (req, res, next) => {
 	const { subjectsId } = req.params;
-	console.log("subjectsId:", subjectsId)
-	console.log("req.body:", req.body)
 	const { inputTitle, inputDescription, inputTags } = req.body
 	const updateKeys = {
 		title: inputTitle,

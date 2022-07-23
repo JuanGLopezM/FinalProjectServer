@@ -8,11 +8,9 @@ const Subject = require('../models/Subject.model');
 //  POST /api/sections  -  Creates a new section
 router.post('/', (req, res, next) => {
     const { title, tags, subjectId } = req.body;
-    console.log(req.body)
 
     Section.create({ title, tags, subjectId })
         .then((newSection) => {
-            console.log('newSection:', newSection)
             return Subject.findByIdAndUpdate(subjectId, {
                 $push: { sections: newSection._id }
             });
@@ -41,8 +39,6 @@ router.get('/:sectionsId', (req, res, next) => {
 // PUT  /api/subjects/:subjectsId  -  Updates a specific project by id
 router.put('/:sectionsId', (req, res, next) => {
     const { sectionsId } = req.params;
-    console.log("sectionsId:", sectionsId)
-    console.log("req.body:", req.body)
     const { inputTitle, inputTags } = req.body
     const updateKeys = {
         title: inputTitle,

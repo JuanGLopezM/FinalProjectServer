@@ -9,7 +9,7 @@ const Section = require('../models/Section.model');
 
 router.post("/add-favorite", isLoggedIn, (req, res) => {
    
-    // console.log(req.body)
+   
 
     Games.find({ id: idToCheck })
         .then(charArray => {
