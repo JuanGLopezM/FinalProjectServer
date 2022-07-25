@@ -5,43 +5,22 @@ const mongoose = require('mongoose');
 const Resource = require('../models/Resource.model');
 const Subject = require('../models/Subject.model');
 const Section = require('../models/Section.model');
+const User = require('../models/User.model');
 
 
-router.post("/add-favorite", isLoggedIn, (req, res) => {
-   
-   
-
-    Games.find({ id: idToCheck })
-        .then(charArray => {
-            // comprobar si ese apiId ya esta en db games
-            console.log(charArray)
-            if (charArray.length === 0) {
-                Games
-                    .create(query)
-                    .then(result => {
-                        console.log(result)
-                        User
-                            .findByIdAndUpdate(req.user._id, { $push: { favorites: result._id } })
-                            .then(() => {
-                                res.redirect("/games")
-                            })
-                    })
-                    .catch(err => console.log(err))
-            } else {
-                User
-                    .findById(req.user._id)
-                    .then((user) => {
-                        if (!user.favorites.includes(charArray[0]._id)) {
-                            User
-                                .findByIdAndUpdate(req.user._id, { $push: { favorites: charArray[0]._id } })
-                                .then(() => {
-                                    res.redirect("/games")
-                                })
-                        } else { res.redirect("/games") }
-                    })
-                    .catch((err) => {
-                        console.log(err)
-                    })
-            }
-        })
+router.post("/favorites", (req, res) => {
+    const { resourceId } = req.body;
+    console.log('llegamos?')
+	console.log(req);
+	
+	User.findById({ resourceId })
+		.then((newFavorite) => {
+			return User.findByIdAndUpdate(userId, {
+				$push: { pendingSubject: newFavorite._id}
+			});
+		})
+		.then((response) => res.json(response))
+		.catch((err) => res.json(err));
 })
+
+module.exports = router;

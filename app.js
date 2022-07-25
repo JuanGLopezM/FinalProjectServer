@@ -16,6 +16,9 @@ app.use("/api", allRoutes);
 const sectionRoutes = require("./routes/section.routes")
 app.use("/api/sections", isAuthenticated, sectionRoutes)
 
+const favoriteRoutes = require("./routes/favorites.routes")
+app.use("/api/favorites", isAuthenticated, favoriteRoutes)
+
 const authRouter = require("./routes/auth.routes");
 app.use("/api/auth", authRouter);
 

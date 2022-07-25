@@ -10,7 +10,6 @@ const Section = require('../models/Section.model');
 router.post('/resources', (req, res, next) => {
 	const { title,tags, source, sectionId } = req.body;
 	
-
 	Resource.create({ title, tags, source, sectionId })
 		.then((newResource) => {
 			return Section.findByIdAndUpdate(sectionId, {
