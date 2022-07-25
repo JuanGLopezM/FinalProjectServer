@@ -7,17 +7,23 @@ const Subject = require('../models/Subject.model');
 const Section = require('../models/Section.model');
 const User = require('../models/User.model');
 
+//  GET /api/favorites -  Retrieves all favorites of the user
+router.get('/favorites', (req, res, next) => {
+	console.log('PAYLOAD',req.payload._id)
+
+	User.findById(req.payload._id)
+	.populate('pending')
+	.then((allPending) => res.json(allPending))
+	.catch((err) => res.json(err));
+});
 
 router.post("/favorites", (req, res) => {
     const { idResource, user } = req.body;
-    console.log('1111',req.body)
-	console.log('2' , idResource)
-	console.log('3', user._id)
 	
 	User.findById( user._id )
 		.then((user) => {
 			return User.findByIdAndUpdate(user._id, {
-				$push: { pendingSubject: idResource}
+				$push: { pending: idResource}
 			});
 		})
 		.then((response) => res.json(response))

@@ -5,8 +5,7 @@ const userSchema = new Schema({
   email: { type: String, unique: true, required: true },
   password: { type: String, required: true },
   name: { type: String, required: true },
-  pendingSubject: String,
-  completedSubject: String,
+  pending: [{ type: Schema.Types.ObjectId, ref: 'Resource' }]
 });
 
 module.exports = model("User", userSchema);
