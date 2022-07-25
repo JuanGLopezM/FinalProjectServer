@@ -9,14 +9,15 @@ const User = require('../models/User.model');
 
 
 router.post("/favorites", (req, res) => {
-    const { resourceId } = req.body;
-    console.log('llegamos?')
-	console.log(req);
+    const { idResource, user } = req.body;
+    console.log('1111',req.body)
+	console.log('2' , idResource)
+	console.log('3', user._id)
 	
-	User.findById({ resourceId })
-		.then((newFavorite) => {
-			return User.findByIdAndUpdate(userId, {
-				$push: { pendingSubject: newFavorite._id}
+	User.findById( user._id )
+		.then((user) => {
+			return User.findByIdAndUpdate(user._id, {
+				$push: { pendingSubject: idResource}
 			});
 		})
 		.then((response) => res.json(response))
