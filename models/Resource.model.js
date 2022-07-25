@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
 const resourceSchema = new Schema({
-  title: String,
+  title:{ type: String, required: true },
   tags: String,
   // subject: [{ type: Schema.Types.ObjectId, ref: 'Subject' }],
   source: String,

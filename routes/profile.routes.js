@@ -19,14 +19,13 @@ router.get('/', (req, res, next) => {
 
 router.post("/", (req, res) => {
     const { idResource, user } = req.body;
+	console.log("req.body", req.body)
 	
 	User.findById( user._id )
 		.then((user) => {
-			return User.findByIdAndUpdate(user._id, {
-				$push: { pending: idResource}
-			});
-		})
-		.then((response) => res.json(response))
+			if(!user.pending.includes(idResource)) {
+			return User.findByIdAndUpdate(user._id, { $push: { pending: idResource} });
+			}})
 		.catch((err) => res.json(err));
 })
 
