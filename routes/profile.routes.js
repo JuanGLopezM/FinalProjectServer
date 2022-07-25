@@ -7,8 +7,8 @@ const Subject = require('../models/Subject.model');
 const Section = require('../models/Section.model');
 const User = require('../models/User.model');
 
-//  GET /api/favorites -  Retrieves all favorites of the user
-router.get('/favorites', (req, res, next) => {
+//  GET /api/profile -  Retrieves all profile of the user
+router.get('/profile', (req, res, next) => {
 	console.log('PAYLOAD',req.payload._id)
 
 	User.findById(req.payload._id)
@@ -17,7 +17,7 @@ router.get('/favorites', (req, res, next) => {
 	.catch((err) => res.json(err));
 });
 
-router.post("/favorites", (req, res) => {
+router.post("/profile", (req, res) => {
     const { idResource, user } = req.body;
 	
 	User.findById( user._id )
