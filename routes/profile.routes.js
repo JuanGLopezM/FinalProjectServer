@@ -9,7 +9,6 @@ const User = require('../models/User.model');
 
 //  GET /api/profile -  Retrieves all profile of the user
 router.get('/', (req, res, next) => {
-	console.log('PAYLOAD',req.payload._id)
 
 	User.findById(req.payload._id)
 	.populate('pending')
@@ -19,7 +18,6 @@ router.get('/', (req, res, next) => {
 
 router.post("/", (req, res) => {
     const { idResource, user } = req.body;
-	console.log("req.body", req.body)
 	
 	User.findById( user._id )
 		.then((user) => {
