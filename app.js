@@ -10,30 +10,22 @@ require("./config")(app);
 
 
 // 👇 MIDDLEWARE MISSING
-const allRoutes = require("./routes");
-app.use("/api", allRoutes);
+const authRouter = require("./routes/auth.routes");
+app.use("/api/auth", authRouter);
 
 const sectionRoutes = require("./routes/section.routes")
 app.use("/api/sections", isAuthenticated, sectionRoutes)
 
-const profileRoutes = require("./routes/profile.routes")
-app.use("/api", isAuthenticated, profileRoutes)
-
-const authRouter = require("./routes/auth.routes");
-app.use("/api/auth", authRouter);
-
 const subjectRouter = require("./routes/subject.routes");
 app.use("/api/subjects", isAuthenticated, subjectRouter);
 
+const profileRoutes = require("./routes/profile.routes")
+app.use("/api/profile", isAuthenticated, profileRoutes)
+
 const resourceRouter = require("./routes/resource.routes");
-app.use("/api", isAuthenticated, resourceRouter);            // <== UPDATE
+app.use("/api", isAuthenticated, resourceRouter);      
 
-
-// app.use((req, res, next) => {
-//     // If no routes match, send them the React HTML.
-//     res.sendFile(__dirname + "/public/index.html");
-//   });
-
-// require("./error-handling")(app);
+const allRoutes = require("./routes");
+app.use("/api", allRoutes);
 
 module.exports = app;

@@ -8,7 +8,7 @@ const Section = require('../models/Section.model');
 const User = require('../models/User.model');
 
 //  GET /api/profile -  Retrieves all profile of the user
-router.get('/profile', (req, res, next) => {
+router.get('/', (req, res, next) => {
 	console.log('PAYLOAD',req.payload._id)
 
 	User.findById(req.payload._id)
@@ -17,7 +17,7 @@ router.get('/profile', (req, res, next) => {
 	.catch((err) => res.json(err));
 });
 
-router.post("/profile", (req, res) => {
+router.post("/", (req, res) => {
     const { idResource, user } = req.body;
 	
 	User.findById( user._id )
