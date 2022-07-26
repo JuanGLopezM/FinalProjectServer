@@ -16,6 +16,7 @@ router.get('/', (req, res, next) => {
 	.catch((err) => res.json(err));
 });
 
+//Add a resource to the profile
 router.post("/", (req, res) => {
     const { idResource, user } = req.body;
 	
@@ -25,6 +26,18 @@ router.post("/", (req, res) => {
 			return User.findByIdAndUpdate(user._id, { $push: { pending: idResource} });
 			}})
 		.catch((err) => res.json(err));
+})
+
+//delete a resource from the profile
+router.delete("/:id", (req, res) => {
+    const { id } = req.params
+    console.log(id)
+    console.log('userpayload:', req.payload._id)
+   
+	User.findByIdAndUpdate(req.payload._id, { $pull: { pending: id } })
+        .then(() => { res.status(200).json({})} )
+        .catch(err => console.log(err));
+
 })
 
 module.exports = router;
