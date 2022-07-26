@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
-const ExternalResource = require('../models/ExternalResource.model');
+const ExternalResource = require('../models/ExternalResources.model');
 const Resource = require('../models/Resource.model');
 const Subject = require('../models/Subject.model');
 const Section = require('../models/Section.model');
