@@ -40,14 +40,6 @@ router.post('/resources/addnew', (req, res, next) => {
 	)
 	
 	.catch((err) => res.json(err));
-
-	// ExternalResource.findOne({ title: req.body.title })
-	// .then((response) => {
-	// 	console.log(response)
-	// 	res.json(response)}
-	// )
-	// .catch((err) => res.json(err));
-
 	
 })
 
