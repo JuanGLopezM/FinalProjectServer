@@ -14,7 +14,7 @@ router.get('/', (req, res, next) => {
 	.populate('pending')
 	.populate('pendingExternal')
 	.then((allPending) => {
-	console.log(allPending)
+	
 	res.json(allPending)})
 	.catch((err) => res.json(err));
 });
@@ -38,9 +38,12 @@ router.delete("/:id", (req, res) => {
     console.log('userpayload:', req.payload._id)
    
 	User.findByIdAndUpdate(req.payload._id, { $pull: { pending: id } })
-        .then(() => { res.status(200).json({})} )
+        .then(() => { res.status(201).json({})} )
         .catch(err => console.log(err));
 
+	User.findByIdAndUpdate(req.payload._id, { $pull: { pendingExternal: id } })
+        .then(() => { res.status(202).json({})} )
+        .catch(err => console.log(err));
 })
 
 module.exports = router;
