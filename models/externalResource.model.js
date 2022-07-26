@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
-const externalResourceSchema = new Schema({
+const ExternalResourceSchema = new Schema({
   title:{ type: String, required: true },
   description: String,
   tags: String,
@@ -9,4 +9,4 @@ const externalResourceSchema = new Schema({
   source: String,
 });
     
-module.exports = model("externalResource", externalResourceSchema);
+module.exports = model("ExternalResource", ExternalResourceSchema);

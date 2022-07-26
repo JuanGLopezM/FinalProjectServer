@@ -12,7 +12,10 @@ router.get('/', (req, res, next) => {
 
 	User.findById(req.payload._id)
 	.populate('pending')
-	.then((allPending) => res.json(allPending))
+	.populate('pendingExternal')
+	.then((allPending) => {
+	console.log(allPending)
+	res.json(allPending)})
 	.catch((err) => res.json(err));
 });
 
