@@ -6,7 +6,7 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   name: { type: String, required: true },
   pending: [{ type: Schema.Types.ObjectId, ref: 'Resource' }],
-  pendingExternal: [{ type: Schema.Types.ObjectId, ref: 'ExternalResource' }],      
+  pendingExternal: [{ type: Schema.Types.ObjectId, ref: 'ExternalResource' }],
 });
 
 module.exports = model("User", userSchema);
