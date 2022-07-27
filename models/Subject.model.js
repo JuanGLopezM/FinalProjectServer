@@ -6,7 +6,6 @@ const subjectSchema = new Schema({
   description: String,
   tags: String,
   sections: [{ type: Schema.Types.ObjectId, ref: 'Section' }],
-  // resources: [{ type: Schema.Types.ObjectId, ref: 'Resource' }],//Para eliminar. REVISAR SUBJECT RUTES PARA QUITAR RESOURCES
 });
 
 module.exports = model("Subject", subjectSchema);
