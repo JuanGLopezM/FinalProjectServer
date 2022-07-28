@@ -2,11 +2,16 @@ Instructions:
 - npm install
 - npm start (You need to have both, front and backend, started for the app to work.)
 
-Links:
+Github:
+- https://github.com/JuanGLopezM/FinalProjectClient
+- https://github.com/JuanGLopezM/FinalProjectServer
+
+- https://github.com/lluisllc/FinalProjectClient
+- https://github.com/lluisllc/FinalProjectServer
+
+Links deploy:
 - Front-end: https://final-project-client.vercel.app/
 - Backend: https://project-codein-server.herokuapp.com/api
-
-
 
 Useful info:
 - Watch out for the requirements on the password in order to register/login.
