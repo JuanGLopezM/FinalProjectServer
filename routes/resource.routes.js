@@ -67,7 +67,7 @@ router.put('/resources/:resourceId', (req, res, next) => {
 		.catch((err) => res.json(err));
 });
 
-//  DELETE /api/tasks/:taskId  - Deletes a specific task by id
+//  DELETE /api/resources/:resourceId  - Deletes a specific resource by id
 router.delete('/resources/:resourceId', (req, res, next) => {
 	const { resourceId } = req.params;
 
